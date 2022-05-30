@@ -6,7 +6,9 @@ public class WaypointController : MonoBehaviour
     [SerializeField] bool isBuildableTile;
 
     private GameObject towerSpawnParent;
-    private bool hasTowerBuilt = false;
+
+    public bool IsBuildableTile
+    { get { return isBuildableTile; } }
 
     private void Start()
     {
@@ -16,16 +18,13 @@ public class WaypointController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isBuildableTile)
         {
-            if (!hasTowerBuilt)
-            {
-                BuildTower();
-            }
+            BuildTower();
         }
     }
 
     private void BuildTower()
     {
-        hasTowerBuilt = true;
+        isBuildableTile = false;
         GameObject spawnedTower = Instantiate(towerObject, transform.position, Quaternion.identity);
         spawnedTower.transform.parent = towerSpawnParent.transform;
     }
