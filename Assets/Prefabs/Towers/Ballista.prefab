@@ -117,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4872,6 +4872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd89575496580a41a2956d324fb4025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerRange: 15
+  projectileParticles: {fileID: 3875092214929604018}
   weapon: {fileID: 3144582324300694500}
 --- !u!1 &6131056645070147807
 GameObject:

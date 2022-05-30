@@ -11,6 +11,7 @@ TagManager:
   - TowerProjectile
   - Path
   - ObjectPool
+  - EnemySpawn
   layers:
   - Default
   - TransparentFX

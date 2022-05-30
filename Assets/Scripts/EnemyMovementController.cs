@@ -9,7 +9,7 @@ public class EnemyMovementController : MonoBehaviour
     [SerializeField] [Range(0f, 5f)] private float movementSpeed = 1.0f;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         print("Initializing wayfinding");
         FindPath();
@@ -36,7 +36,7 @@ public class EnemyMovementController : MonoBehaviour
 
     void ReachedEndOfPath()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     IEnumerator MoveToWaypoint()

@@ -9,7 +9,7 @@ public class EnemyHealthController : MonoBehaviour
     [SerializeField] int currentHitPoints = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         currentHitPoints = maxHitPoints;
     }
@@ -30,7 +30,7 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHitPoints <= Mathf.Epsilon)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

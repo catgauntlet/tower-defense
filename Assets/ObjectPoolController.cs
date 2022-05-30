@@ -4,25 +4,54 @@ using UnityEngine;
 
 public class ObjectPoolController : MonoBehaviour
 {
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] float spawnTimer = 1.0f;
-    [SerializeField] int maxEnemyCount = 500;
+    [SerializeField] private int poolSize = 5;
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private float spawnTimer = 1.0f;
+
+    private GameObject[] enemyPool;
 
     int enemyCount = 0;
+
+    private void Awake()
+    {
+        PopulateEnemyPool();
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(InstantiateEnemy());
+       StartCoroutine(SpawnEnemies());
     }
 
-    IEnumerator InstantiateEnemy()
+    private void PopulateEnemyPool()
     {
-        while(enemyCount < maxEnemyCount)
+        enemyPool = new GameObject[poolSize];
+
+        for (int i = 0; i < enemyPool.Length; i++)
         {
-            enemyCount++;
-            Instantiate(enemyPrefab, transform);
-            yield return new WaitForSeconds(1f);
+            enemyPool[i] = Instantiate(enemyPrefab, transform);
+            enemyPool[i].SetActive(false);
+        }
+    }
+
+    void EnableObjectInPool()
+    {
+        foreach(GameObject enemy in enemyPool)
+        {
+            if (!enemy.activeInHierarchy)
+            {
+                enemy.SetActive(true);
+                return;
+            }
+        }
+    }
+    IEnumerator SpawnEnemies()
+    {
+        while(true)
+        {
+              EnableObjectInPool();
+              yield return new WaitForSeconds(1f);
         }
     }
 }

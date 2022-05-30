@@ -1158,10 +1158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3a30c2542e83148bd17b20e53a37de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolSize: 5
   enemyPrefab: {fileID: 2259576920850093362, guid: 6b684c882c3fa6f4b9f30a4676c98d24,
     type: 3}
   spawnTimer: 1
-  maxEnemyCount: 500
 --- !u!1001 &819086577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1992,6 +1992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: (0, 1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 465791353293943068, guid: e38f0bb4674a84c48a32e65ae06438f8,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawn
       objectReference: {fileID: 0}
     - target: {fileID: 465791353293943071, guid: e38f0bb4674a84c48a32e65ae06438f8,
         type: 3}
