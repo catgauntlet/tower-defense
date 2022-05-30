@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 766603338051976055}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf635ca3f68cf024b8e8d5f7b8efe29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerObject: {fileID: 3219458064393657486, guid: 8a965e088bae16643aab3d07ccfd5e2e,
+    type: 3}
   isBuildableTile: 1
 --- !u!65 &766603338051976055
 BoxCollider:
