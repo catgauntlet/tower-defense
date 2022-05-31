@@ -5,6 +5,7 @@ using TMPro;
 using System;
 
 [ExecuteAlways]
+[RequireComponent(typeof(TMP_Text))]
 public class CoordinateLabelController : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
@@ -41,6 +42,7 @@ public class CoordinateLabelController : MonoBehaviour
         coordinates.y = Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
 
         label.text = $"{coordinates.x},{coordinates.y}";
+
         UpdateObjectName();
         UpdateLabelStyle();
     }
