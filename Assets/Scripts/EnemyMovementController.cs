@@ -8,6 +8,13 @@ public class EnemyMovementController : MonoBehaviour
     [SerializeField] List<WaypointController> path = new List<WaypointController>();
     [SerializeField] [Range(0f, 5f)] private float movementSpeed = 1.0f;
 
+    EnemyController enemy;
+
+    private void Start()
+    {
+        enemy = GetComponent<EnemyController>();
+    }
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -36,6 +43,7 @@ public class EnemyMovementController : MonoBehaviour
 
     void ReachedEndOfPath()
     {
+        enemy.EnemyGoldStealHandler();
         gameObject.SetActive(false);
     }
 

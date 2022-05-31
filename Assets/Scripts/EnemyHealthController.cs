@@ -8,6 +8,13 @@ public class EnemyHealthController : MonoBehaviour
 
     [SerializeField] int currentHitPoints = 0;
 
+    EnemyController enemy;
+
+    private void Start()
+    {
+        enemy = GetComponent<EnemyController>();
+    }
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -30,6 +37,7 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHitPoints <= Mathf.Epsilon)
         {
+            enemy.EnemyDeathHandler();
             gameObject.SetActive(false);
         }
     }
