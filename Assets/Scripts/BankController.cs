@@ -9,6 +9,10 @@ public class BankController : MonoBehaviour
     [SerializeField]
     private int currentBalance;
 
+    GameManager gameManager;
+
+    UIController ui;
+
     public int CurrentBalance
     {
         get { return currentBalance;  }
@@ -17,23 +21,32 @@ public class BankController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        ui = FindObjectOfType<UIController>();
+        gameManager = FindObjectOfType<GameManager>();
         currentBalance = startingBalance;
+        ui.SetCurrencyAmount(currentBalance);
+    }
+
+    private void UpdateCurrencyLabel()
+    {
+        ui.SetCurrencyAmount(currentBalance);
     }
 
     public void Deposit(int amount)
     {
         currentBalance += Mathf.Abs(amount);
+        UpdateCurrencyLabel();
     }
 
     public void Withdraw(int amount)
     {
         int absAmount = Mathf.Abs(amount);
-        if (currentBalance - absAmount < 0)
+        currentBalance -= absAmount;
+        UpdateCurrencyLabel();
+
+        if (currentBalance < 0)
         {
-            currentBalance = 0;
-        } else
-        {
-            currentBalance -= absAmount;
+            gameManager.GameOver();
         }
     }
 }
