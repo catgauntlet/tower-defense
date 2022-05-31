@@ -44,7 +44,7 @@ public class BankController : MonoBehaviour
         currentBalance -= absAmount;
         UpdateCurrencyLabel();
 
-        if (currentBalance < 0)
+        if (currentBalance <= 0)
         {
             gameManager.GameOver();
         }
