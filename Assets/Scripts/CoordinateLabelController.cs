@@ -42,7 +42,6 @@ public class CoordinateLabelController : MonoBehaviour
         coordinates.y = Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
 
         label.text = $"{coordinates.x},{coordinates.y}";
-
         UpdateObjectName();
         UpdateLabelStyle();
     }
