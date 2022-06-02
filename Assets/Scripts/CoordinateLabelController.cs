@@ -8,19 +8,22 @@ using System;
 [RequireComponent(typeof(TMP_Text))]
 public class CoordinateLabelController : MonoBehaviour
 {
-    [SerializeField] Color defaultColor = Color.white;
+    [SerializeField] Color defaultColor = Color.blue;
     [SerializeField] Color blockedColor = Color.gray;
+    [SerializeField] Color exploredColor = Color.red;
+    [SerializeField] Color pathColor = Color.yellow;
 
     TMP_Text label;
     Vector2Int coordinates = new Vector2Int();
-    WaypointController waypoint;
+    GridManager gridManager;
 
     private void Awake()
     {
-        label = GetComponent<TMP_Text>();
-        label.enabled = false;
+        gridManager = FindObjectOfType<GridManager>();
 
-        waypoint = GetComponentInParent<WaypointController>();
+        label = GetComponent<TMP_Text>();
+        label.enabled = true;
+
         DisplayCoordinates();
     }
 
@@ -48,13 +51,28 @@ public class CoordinateLabelController : MonoBehaviour
 
     void UpdateLabelStyle()
     {
-        if (waypoint.IsBuildableTile)
-        {
-            label.color = defaultColor;
-        } else
-        {
-            label.color = blockedColor;
+        if (gridManager == null) {
+            return;
         }
+
+        Node node = gridManager.GetNode(coordinates);
+
+        if (node == null) {
+            label.color = defaultColor;
+            return;
+        }
+
+        if (!node.isWalkable) {
+            label.color = blockedColor;
+        } else if (node.isPath) {
+            label.color = pathColor;
+        } else if (node.isExplored) {
+            label.color = exploredColor;
+        } else {
+            label.color = defaultColor;
+        }
+
+        Debug.Log(label.color);
     }
 
     void UpdateObjectName()
