@@ -51,6 +51,7 @@ public class TileController : MonoBehaviour
             isBuildableTile = false;
             spawnedTower.transform.parent = towerSpawnParent.transform;
             gridManager.BlockNode(coordinates);
+            pathFinder.NotifyPathReceivers();
         }
     }
 }

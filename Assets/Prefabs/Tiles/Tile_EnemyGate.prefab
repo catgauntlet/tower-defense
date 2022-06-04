@@ -176,7 +176,7 @@ PrefabInstance:
     - target: {fileID: 467095159032894329, guid: 99fda08ee5223594f928ef40965b3811,
         type: 3}
       propertyPath: isBuildableTile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1180616396341538821, guid: 99fda08ee5223594f928ef40965b3811,
         type: 3}
@@ -241,22 +241,22 @@ PrefabInstance:
     - target: {fileID: 4543053452794265730, guid: 99fda08ee5223594f928ef40965b3811,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4543053452794265730, guid: 99fda08ee5223594f928ef40965b3811,
         type: 3}
       propertyPath: m_fontColor.b
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4543053452794265730, guid: 99fda08ee5223594f928ef40965b3811,
         type: 3}
       propertyPath: m_fontColor.g
-      value: 0.5
+      value: 0.12013197
       objectReference: {fileID: 0}
     - target: {fileID: 4543053452794265730, guid: 99fda08ee5223594f928ef40965b3811,
         type: 3}
       propertyPath: m_fontColor.r
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99fda08ee5223594f928ef40965b3811, type: 3}

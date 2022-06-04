@@ -7,6 +7,16 @@ public class PathfindingController : MonoBehaviour
     [SerializeField] private Vector2Int startCoordinates;
     [SerializeField] private Vector2Int destinationCoordinates;
 
+    public Vector2Int StartCoordinates
+    {
+        get { return startCoordinates; }
+    }
+
+    public Vector2Int DestinationCoordinates
+    {
+        get { return destinationCoordinates; }
+    }
+
     private Node startNode;
     private Node destinationNode;
     private Node currentSearchNode;
@@ -24,14 +34,14 @@ public class PathfindingController : MonoBehaviour
         if (gridManager != null)
         {
             grid = gridManager.Grid;
+            startNode = grid[startCoordinates];
+            destinationNode = grid[destinationCoordinates];
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        startNode = gridManager.Grid[startCoordinates];
-        destinationNode = gridManager.Grid[destinationCoordinates];
         GetNewPath();
     }
 
@@ -68,6 +78,9 @@ public class PathfindingController : MonoBehaviour
 
     private void BreadthFirstSearch()
     {
+        startNode.isWalkable = true;
+        destinationNode.isWalkable = true;
+
         frontier.Clear();
         exploredNodes.Clear();
 
@@ -126,5 +139,10 @@ public class PathfindingController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void NotifyPathReceivers()
+    {
+        BroadcastMessage("RecalculatePath", SendMessageOptions.DontRequireReceiver);
     }
 }

@@ -5,40 +5,39 @@ using UnityEngine;
 
 public class EnemyMovementController : MonoBehaviour
 {
-    [SerializeField] List<TileController> path = new List<TileController>();
+
     [SerializeField] [Range(0f, 5f)] private float movementSpeed = 1.0f;
 
-    EnemyController enemy;
+    private List<Node> path = new List<Node>();
+    private EnemyController enemy;
+    private GridManager gridManager;
+    private PathfindingController pathfinder;
 
-    private void Start()
+    private void Awake()
     {
         enemy = GetComponent<EnemyController>();
+        gridManager = FindObjectOfType<GridManager>();
+        pathfinder = FindObjectOfType<PathfindingController>();
     }
 
     // Start is called before the first frame update
     void OnEnable()
     {
-        print("Initializing wayfinding");
-        FindPath();
+        RecalculatePath();
         ReturnToStart();
         StartCoroutine(MoveToWaypoint());
-        print("Finished Start method");
     }
     
-    void FindPath()
+    void RecalculatePath()
     {
         path.Clear();
-
-        GameObject pathParent = GameObject.FindGameObjectWithTag("Path");
-
-        foreach(Transform waypoint in pathParent.transform) {
-            path.Add(waypoint.GetComponent<TileController>());
-        }
+        path = pathfinder.GetNewPath();
+        print(path.Count);
     }
 
     void ReturnToStart()
     {
-      transform.position = path[0].transform.position;
+        transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);
     }
 
     void ReachedEndOfPath()
@@ -49,10 +48,12 @@ public class EnemyMovementController : MonoBehaviour
 
     IEnumerator MoveToWaypoint()
     {
-        foreach(TileController waypoint in path)
+        for(int i = 0;  i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
-            Vector3 endPosition = waypoint.transform.position;
+            Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
+            print("Move from position: " + startPosition);
+            print("Move to position: " + endPosition);
             float travelPercent = 0f;
 
             transform.LookAt(endPosition);
