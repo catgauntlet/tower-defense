@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyMovementController : MonoBehaviour
 {
-    [SerializeField] List<WaypointController> path = new List<WaypointController>();
+    [SerializeField] List<TileController> path = new List<TileController>();
     [SerializeField] [Range(0f, 5f)] private float movementSpeed = 1.0f;
 
     EnemyController enemy;
@@ -32,7 +32,7 @@ public class EnemyMovementController : MonoBehaviour
         GameObject pathParent = GameObject.FindGameObjectWithTag("Path");
 
         foreach(Transform waypoint in pathParent.transform) {
-            path.Add(waypoint.GetComponent<WaypointController>());
+            path.Add(waypoint.GetComponent<TileController>());
         }
     }
 
@@ -49,7 +49,7 @@ public class EnemyMovementController : MonoBehaviour
 
     IEnumerator MoveToWaypoint()
     {
-        foreach(WaypointController waypoint in path)
+        foreach(TileController waypoint in path)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = waypoint.transform.position;

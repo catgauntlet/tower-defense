@@ -20285,6 +20285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: {x: 15, y: 15}
+  unityGridSize: 10
 --- !u!4 &1361568857
 Transform:
   m_ObjectHideFlags: 0
@@ -22764,8 +22765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dc38651c1f61b43a698fa611c47f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCoordinates: {x: 0, y: 4}
-  destinationCoordinates: {x: 14, y: 6}
+  startCoordinates: {x: 10, y: 2}
+  destinationCoordinates: {x: 13, y: 1}
 --- !u!1001 &1626616405
 PrefabInstance:
   m_ObjectHideFlags: 0

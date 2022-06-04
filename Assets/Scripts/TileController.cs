@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WaypointController : MonoBehaviour
+public class TileController : MonoBehaviour
 {
     [SerializeField] TowerController towerObject;
     [SerializeField] bool isBuildableTile;
@@ -10,9 +10,27 @@ public class WaypointController : MonoBehaviour
 
     private GameObject towerSpawnParent;
 
+    private GridManager gridManager;
+    private Vector2Int coordinates = new Vector2Int();
+
+    private void Awake()
+    {
+        gridManager = FindObjectOfType<GridManager>();
+
+    }
+
     void Start()
     {
         towerSpawnParent = GameObject.FindWithTag("TowerSpawn");
+        if (gridManager != null)
+        {
+            coordinates = gridManager.GetCoordinatesFromPosition(this.transform.position);
+
+            if (!IsBuildableTile)
+            {
+                gridManager.BlockNode(coordinates);
+            }
+        }
     }
 
     private void OnMouseOver()
