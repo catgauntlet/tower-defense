@@ -23,16 +23,26 @@ public class EnemyMovementController : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        RecalculatePath();
         ReturnToStart();
-        StartCoroutine(MoveToWaypoint());
+        RecalculatePath(true);
     }
     
-    void RecalculatePath()
+    void RecalculatePath(bool resetPath)
     {
+        Vector2Int coordinates = new Vector2Int();
+
+        if (resetPath)
+        {
+            coordinates = pathfinder.StartCoordinates;
+        } else
+        {
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
+        }
+
+        StopAllCoroutines();
         path.Clear();
-        path = pathfinder.GetNewPath();
-        print(path.Count);
+        path = pathfinder.GetNewPath(coordinates);
+        StartCoroutine(MoveToWaypoint());
     }
 
     void ReturnToStart()
@@ -48,7 +58,7 @@ public class EnemyMovementController : MonoBehaviour
 
     IEnumerator MoveToWaypoint()
     {
-        for(int i = 0;  i < path.Count; i++)
+        for(int i = 1;  i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);

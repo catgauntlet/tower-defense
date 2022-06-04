@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyController))]
 public class EnemyHealthController : MonoBehaviour
 {
-    [SerializeField] private int maxHitPoints = 100;
-    [SerializeField] int difficultyRamp = 10;
+    [SerializeField] private float maxHitPoints = 100f;
+    [SerializeField] float difficultyRamp = 1.1f;
 
-    int currentHitPoints = 0;
+    float currentHitPoints = 0;
     EnemyController enemy;
 
     private void Start()
@@ -38,7 +38,7 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHitPoints <= Mathf.Epsilon)
         {
-            maxHitPoints += difficultyRamp;
+            maxHitPoints = maxHitPoints * difficultyRamp;
             enemy.EnemyDeathHandler();
             gameObject.SetActive(false);
         }

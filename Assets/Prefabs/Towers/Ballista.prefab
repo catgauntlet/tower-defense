@@ -4889,6 +4889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerBuildCost: 30
+  towerBuildTime: 1
 --- !u!1 &6131056645070147807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4902,7 +4903,7 @@ GameObject:
   - component: {fileID: 3625777632226532922}
   m_Layer: 0
   m_Name: BallistaTopMesh
-  m_TagString: Untagged
+  m_TagString: BallistaBottom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4986,7 +4987,7 @@ GameObject:
   - component: {fileID: 1467398954496360665}
   m_Layer: 0
   m_Name: BalistaBaseMesh
-  m_TagString: Untagged
+  m_TagString: BallistaTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

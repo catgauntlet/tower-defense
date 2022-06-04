@@ -12,14 +12,16 @@ TagManager:
   - Path
   - ObjectPool
   - EnemySpawn
+  - BallistaTop
+  - BallistaBottom
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Tile
   - Water
   - UI
-  - 
+  - Post Processing
   - 
   - 
   - 
