@@ -11,12 +11,14 @@ public class TileController : MonoBehaviour
     private GameObject towerSpawnParent;
 
     private GridManager gridManager;
+    private PathfindingController pathFinder;
+
     private Vector2Int coordinates = new Vector2Int();
 
     private void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
-
+        pathFinder = FindObjectOfType<PathfindingController>();
     }
 
     void Start()
@@ -35,7 +37,7 @@ public class TileController : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && isBuildableTile)
+        if (Input.GetMouseButtonDown(0) && gridManager.GetNode(coordinates).isWalkable && !pathFinder.WillBlockPath(coordinates))
         {
             BuildTower();
         }
@@ -48,6 +50,7 @@ public class TileController : MonoBehaviour
         {
             isBuildableTile = false;
             spawnedTower.transform.parent = towerSpawnParent.transform;
+            gridManager.BlockNode(coordinates);
         }
     }
 }

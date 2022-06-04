@@ -32,8 +32,14 @@ public class PathfindingController : MonoBehaviour
     {
         startNode = gridManager.Grid[startCoordinates];
         destinationNode = gridManager.Grid[destinationCoordinates];
+        GetNewPath();
+    }
+
+    public List<Node> GetNewPath()
+    {
+        gridManager.ResetNodes();
         BreadthFirstSearch();
-        findPath();
+        return findPath();
     }
 
     private void ExploreNeighbors()
@@ -62,6 +68,9 @@ public class PathfindingController : MonoBehaviour
 
     private void BreadthFirstSearch()
     {
+        frontier.Clear();
+        exploredNodes.Clear();
+
         bool isRunning = true;
 
         frontier.Enqueue(startNode);
@@ -99,4 +108,23 @@ public class PathfindingController : MonoBehaviour
 
         return path;
     } 
+
+    public bool WillBlockPath(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            bool previousWalkableState = grid[coordinates].isWalkable;
+            grid[coordinates].isWalkable = false;
+            List<Node> newPath = GetNewPath();
+            grid[coordinates].isWalkable = previousWalkableState;
+
+            if (newPath.Count <= 1)
+            {
+                GetNewPath();
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
