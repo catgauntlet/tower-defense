@@ -71,8 +71,6 @@ public class CoordinateLabelController : MonoBehaviour
         } else {
             label.color = defaultColor;
         }
-
-        Debug.Log(label.color);
     }
 
     void UpdateObjectName()
